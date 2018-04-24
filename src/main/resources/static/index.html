@@ -1,0 +1,99 @@
+<html>
+
+<HEAD>
+    <TITLE>TicTacToe - Web</TITLE>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</HEAD>
+<body>
+<h2 align=center>井字遊戲 - 網頁版</h2>
+<div align=center>
+    <p id="player" style="width:150px; height:30px"> Next player: O</p><br>
+    <table id="ox" border="2" class="table table-bordered" align=center height=300px
+           style="width:300px; text-align:center;">
+        <tr>
+            <td>
+                <input type="button" id="box0" onclick="handler(0)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+            <td>
+                <input type="button" id="box1" onclick="handler(1)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+            <td>
+                <input type="button" id="box2" onclick="handler(2)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="box3" onclick="handler(3)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+            <td>
+                <input type="button" id="box4" onclick="handler(4)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+
+            <td>
+                <input type="button" id="box5" onclick="handler(5)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="box6" onclick="handler(6)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+            <td>
+                <input type="button" id="box7" onclick="handler(7)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+            <td>
+                <input type="button" id="box8" onclick="handler(8)" value=""
+                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
+                       height=50px/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+
+</html>
+<script>
+
+    function handler(_idNum) {
+        if (document.getElementById("box" + _idNum).value == "O" || document.getElementById("box" + _idNum).value == "X")
+            return
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/ooxxRequest?num=" + _idNum,
+                success: function (data) {
+                    console.log("SUCCESS : ", data);
+                    console.log(data);
+                    document.getElementById("box" + _idNum).value = data.key;
+                    if (data.value != "")
+                        document.getElementById("player").innerHTML = "Winner: " + data.key;
+                    else if (data.key == "O")
+                        document.getElementById("player").innerHTML = "Next player: X";
+                    else
+                        document.getElementById("player").innerHTML = "Next player: O";
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+    }
+</script>
