@@ -15,6 +15,13 @@ public class HomeController {
         return "index.html";
     }
 
+    @RequestMapping(value = "/reset", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String reset() {
+        game = new Game();
+        String next = game.getNext();
+        return next;
+    }
 
     @RequestMapping(value = "/ooxxRequest", method = RequestMethod.POST)
     @ResponseBody

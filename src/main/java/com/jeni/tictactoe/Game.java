@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Game {
 
-    private String now = "X";
+    private  static  String now = "X";
     private static String[] player = new String[9];
     private static final int[][] rule = {
             {0, 1, 2},
@@ -24,6 +24,12 @@ public class Game {
     }
     private void initPlayer() {
         Arrays.fill(player,"");
+    }
+
+    public  String getNext() {
+        String next = now=="O" ?"X" : "O";
+        return next;
+
     }
 
     public Pair getNextPlayer(int num) {

@@ -74,8 +74,23 @@
 <script>
 
     function init() {
-        location.reload()
+        $.ajax({
+            type: "DELETE",
+            url: "/reset",
+            success: function (data) {
+                console.log("SUCCESS : ", data);
+                console.log(data);
+                for( i = 0 ; i < 9 ; i++)
+                    document.getElementById("box"+i).value = "";
+                document.getElementById("player").innerHTML = "Next player: " + data;
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+
     }
+
     function handler(_idNum) {
         if (document.getElementById("box" + _idNum).value == "O"
             || document.getElementById("box" + _idNum).value == "X"
@@ -88,8 +103,6 @@
                 type: "POST",
                 url: "/ooxxRequest?num=" + _idNum,
                 success: function (data) {
-                    console.log("SUCCESS : ", data);
-                    console.log(data);
                     document.getElementById("box" + _idNum).value = data.key;
                     if (data.value != "")
                         document.getElementById("player").innerHTML = data.value;
@@ -104,4 +117,5 @@
             });
         }
     }
+
 </script>
