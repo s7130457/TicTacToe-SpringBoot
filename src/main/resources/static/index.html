@@ -84,7 +84,7 @@
                     console.log(data);
                     document.getElementById("box" + _idNum).value = data.key;
                     if (data.value != "")
-                        document.getElementById("player").innerHTML = "Winner: " + data.key;
+                        document.getElementById("player").innerHTML = data.value;
                     else if (data.key == "O")
                         document.getElementById("player").innerHTML = "Next player: X";
                     else
