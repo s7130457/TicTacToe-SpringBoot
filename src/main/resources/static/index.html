@@ -77,8 +77,12 @@
         location.reload()
     }
     function handler(_idNum) {
-        if (document.getElementById("box" + _idNum).value == "O" || document.getElementById("box" + _idNum).value == "X")
-            return
+        if (document.getElementById("box" + _idNum).value == "O"
+            || document.getElementById("box" + _idNum).value == "X"
+            || document.getElementById("player").innerHTML.indexOf("Winner") != -1){
+                return
+        }
+
         else {
             $.ajax({
                 type: "POST",
