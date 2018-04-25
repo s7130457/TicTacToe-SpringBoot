@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import java.util.Arrays;
 
 public class Game {
-    private static Game game;
+
     private String now = "X";
     private static String[] player = new String[9];
     private static final int[][] rule = {
@@ -53,8 +53,6 @@ public class Game {
         }
         int tmp;
         for(tmp= 0 ; tmp < player.length ; tmp++) {
-            System.out.println("[tmp]="+tmp);
-            System.out.println("player[tmp]="+player[tmp]);
             if(player[tmp] == "") {
                 break;
             }

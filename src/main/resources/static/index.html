@@ -63,7 +63,8 @@
                        height=50px/>
             </td>
         </tr>
-    </table>
+    </table><br>
+    <input type="button" value="重來" onclick="init()">
 </div>
 
 
@@ -72,6 +73,9 @@
 </html>
 <script>
 
+    function init() {
+        location.reload()
+    }
     function handler(_idNum) {
         if (document.getElementById("box" + _idNum).value == "O" || document.getElementById("box" + _idNum).value == "X")
             return
