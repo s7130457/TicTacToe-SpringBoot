@@ -13,54 +13,36 @@
            style="width:300px; text-align:center;">
         <tr>
             <td>
-                <input type="button" id="box0" onclick="handler(0)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box0" onclick="handler(0)" value="" height=50px/>
             </td>
             <td>
-                <input type="button" id="box1" onclick="handler(1)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box1" onclick="handler(1)" value="" height=50px/>
             </td>
             <td>
-                <input type="button" id="box2" onclick="handler(2)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box2" onclick="handler(2)" value="" height=50px/>
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button" id="box3" onclick="handler(3)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box3" onclick="handler(3)" value="" height=50px/>
             </td>
             <td>
-                <input type="button" id="box4" onclick="handler(4)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box4" onclick="handler(4)" value="" height=50px/>
             </td>
 
             <td>
-                <input type="button" id="box5" onclick="handler(5)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box5" onclick="handler(5)" value="" height=50px/>
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button" id="box6" onclick="handler(6)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box6" onclick="handler(6)" value="" height=50px/>
             </td>
             <td>
-                <input type="button" id="box7" onclick="handler(7)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box7" onclick="handler(7)" value="" height=50px/>
             </td>
             <td>
-                <input type="button" id="box8" onclick="handler(8)" value=""
-                       style="width:100px;height:100px; border-color:#000000 ;background-color:#faf9f9"
-                       height=50px/>
+                <input type="button" id="box8" onclick="handler(8)" value="" height=50px/>
             </td>
         </tr>
     </table><br>
@@ -81,6 +63,9 @@
                 for( i = 0 ; i < 9 ; i++)
                     document.getElementById("box"+i).value = "";
                 document.getElementById("player").innerHTML = "Next player: " + data;
+                document.getElementById("player").style.color="black";
+                document.getElementById("player").style.fontSize = "20px";
+                document.getElementById("player").style.fontWeight = "normal";
             },
             error: function (e) {
                 console.log(e);
@@ -102,12 +87,22 @@
                 url: "/ooxxRequest?num=" + _idNum,
                 success: function (data) {
                     document.getElementById("box" + _idNum).value = data.key;
-                    if (data.value != "")
+                    document.getElementById("box" + _idNum).style.color= data.key=="O"?"blue":"red";
+                    if (data.value != "") {
                         document.getElementById("player").innerHTML = data.value;
-                    else if (data.key == "O")
-                        document.getElementById("player").innerHTML = "Next player: X";
-                    else
-                        document.getElementById("player").innerHTML = "Next player: O";
+                        document.getElementById("player").style.color = "red";
+                        document.getElementById("player").style.fontSize = "30px";
+                        document.getElementById("player").style.fontWeight = "bold";
+                    }
+
+                    else {
+                        if (data.key == "O")
+                            document.getElementById("player").innerHTML = "Next player: X";
+                        else
+                            document.getElementById("player").innerHTML = "Next player: O";
+                    }
+
+
                 },
                 error: function (e) {
                     console.log(e);
@@ -116,4 +111,15 @@
         }
     }
 
+
 </script>
+<style>
+    .table input {
+        font-size:50px;
+        font-weight:bold;
+        width:100px;
+        height:100px;
+        border-color:#000000;
+        background-color:#faf9f9;
+    }
+</style>
