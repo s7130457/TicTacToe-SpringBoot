@@ -78,8 +78,6 @@
             type: "DELETE",
             url: "/reset",
             success: function (data) {
-                console.log("SUCCESS : ", data);
-                console.log(data);
                 for( i = 0 ; i < 9 ; i++)
                     document.getElementById("box"+i).value = "";
                 document.getElementById("player").innerHTML = "Next player: " + data;

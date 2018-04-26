@@ -63,7 +63,7 @@ public class Game {
                 break;
             }
         }
-        if(tmp == player.length) {
+        if(tmp == player.length && winner=="") {
             winner = "平手";
         }
         return winner;
